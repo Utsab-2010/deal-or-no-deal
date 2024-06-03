@@ -36,12 +36,16 @@ function update(){
         }
         console.log(str);
     }
-    let avg = Math.floor(sum/(og.length - used.length));
+    let diff = (og.length - used.length);
+    let avg = (diff==0) ? 0 : Math.floor(sum/diff);
     document.getElementById("b-score").innerHTML = "Banker's Score: $" + avg.toString();
     document.getElementById("avai").innerHTML = str;
 }
 
 function reveal(element){
+    for(let i=0;i<used.length;i++){
+        if (amounts[Number(element.id)-1]==used[i]) return;
+    }
     element.innerHTML = "$" + amounts[Number(element.id)-1].toString();
     element.style.backgroundImage = "linear-gradient(45deg,hwb(194 16% 69%),rgb(69, 130, 142),rgb(40, 64, 80))";
     used.push(amounts[Number(element.id)-1]);
